@@ -25,4 +25,9 @@ public class Post {
     private String content;
 
     private String password;
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
