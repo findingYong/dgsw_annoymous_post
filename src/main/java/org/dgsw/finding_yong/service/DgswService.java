@@ -27,18 +27,20 @@ public class DgswService {
                 .password(request.getPassword())
                 .build();
         return PostResponse.from(dgswRepository.save(post));
+    }
     @Transactional
     public UpdateRes update(UpdateReq req, Long id){
-        Post post = dgswRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다. id=" + id));
+            Post post = dgswRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다. id=" + id));
 
-        if(!req.password().equals(post.getPassword())){
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
+            if (!req.password().equals(post.getPassword())) {
+                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            }
 
-        post.update(req.title(), req.content());
+            post.update(req.title(), req.content());
 
-        return new UpdateRes(true,"성공적으로 저장되었습니다.");
+            return new UpdateRes(true, "성공적으로 저장되었습니다.");
+    }
     public List<Post> findAll() {
         return dgswRepository.findAll();
     }

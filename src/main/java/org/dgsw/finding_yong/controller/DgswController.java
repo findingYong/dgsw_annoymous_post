@@ -30,9 +30,11 @@ public class DgswController {
     @PostMapping("/post")
     public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(dgswService.createPost(request));
+    }
     @PatchMapping("/{id}")
     public ResponseEntity<UpdateRes> update(UpdateReq req, @PathVariable Long id){
-        return ResponseEntity.ok(dgswService.update(req, id));
+            return ResponseEntity.ok(dgswService.update(req, id));
+    }
     @GetMapping
     public List<Post> getPosts() {
         return dgswService.findAll();
