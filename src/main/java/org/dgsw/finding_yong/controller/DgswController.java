@@ -28,7 +28,7 @@ public class DgswController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dgswService.createPost(request));
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<UpdateRes> update(UpdateReq req, @PathVariable Long id){
+    public ResponseEntity<UpdateRes> update(@RequestBody UpdateReq req, @PathVariable Long id){
             return ResponseEntity.ok(dgswService.update(req, id));
     }
     @GetMapping
