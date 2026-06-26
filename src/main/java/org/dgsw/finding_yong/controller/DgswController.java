@@ -1,14 +1,11 @@
 package org.dgsw.finding_yong.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.dgsw.finding_yong.dto.PostRequest;
-import org.dgsw.finding_yong.dto.PostResponse;
+import org.dgsw.finding_yong.dto.*;
 import org.dgsw.finding_yong.service.DgswService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.dgsw.finding_yong.dto.UpdateReq;
-import org.dgsw.finding_yong.dto.UpdateRes;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.dgsw.finding_yong.entity.Post;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +29,12 @@ public class DgswController {
             return ResponseEntity.ok(dgswService.update(req, id));
     }
     @GetMapping
-    public List<Post> getPosts() {
-        return dgswService.findAll();
+    public List<GetPostsResponse> getPosts() {
+        return dgswService.findAllPosts();
     }
 
     @GetMapping("/{id}")
-    public Post getPost(@PathVariable Long id) {
-        return dgswService.findById(id);
+    public GetPostsResponse getPost(@PathVariable Long id) {
+        return dgswService.findPostsById(id);
     }
 }

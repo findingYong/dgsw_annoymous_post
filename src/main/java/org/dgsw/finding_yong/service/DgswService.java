@@ -1,10 +1,7 @@
 package org.dgsw.finding_yong.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dgsw.finding_yong.dto.PostRequest;
-import org.dgsw.finding_yong.dto.PostResponse;
-import org.dgsw.finding_yong.dto.UpdateReq;
-import org.dgsw.finding_yong.dto.UpdateRes;
+import org.dgsw.finding_yong.dto.*;
 import org.dgsw.finding_yong.entity.Post;
 import org.dgsw.finding_yong.repository.DgswRepository;
 import org.springframework.http.HttpStatus;
@@ -41,12 +38,12 @@ public class DgswService {
 
             return new UpdateRes(true, "성공적으로 저장되었습니다.");
     }
-    public List<Post> findAll() {
-        return dgswRepository.findAll();
+    public List<GetPostsResponse> findAllPosts() {
+        return dgswRepository.findAllTitleAndContent();
     }
 
-    public Post findById(Long id) {
-        return dgswRepository.findById(id)
+    public GetPostsResponse findPostsById(Long id) {
+        return dgswRepository.findPostById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found"));
     }
 }
